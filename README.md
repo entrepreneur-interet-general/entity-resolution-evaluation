@@ -54,6 +54,7 @@ You can currently compute the following metrics :
 |'bmd'|0|[0,infinity]|basic merge distance : the number of split and merge necessary to go from R to S|
 |'precision'|1|[0,1]|proportion of pairs in R present in S|
 |'recall'|1|[0,1]|proportion of pairs in S present in R|
+|'f1'|1|[0,1]|harmonic mean of precision and recall|
 |'variation_of_information'|0|[0,infinity]|amount of information that is lost and added to go from R to S|
 
 
