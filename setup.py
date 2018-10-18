@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="entity_resolution_evaluation",
-    version="0.0.1",
+    version="0.0.2",
     author="Paul Boosz",
     author_email="paulboosz@gmail.com",
     description="An implementation of the generalized merged distance to evaluate entity resolution",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/paulboosz/entity-resolution-evaluation",
+    url="https://github.com/entrepreneur-interet-general/entity-resolution-evaluation",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
