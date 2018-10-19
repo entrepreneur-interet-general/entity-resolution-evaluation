@@ -161,3 +161,37 @@ def evaluate(R, S, metric):
     else:
         return value
 
+
+def worst_entities(R,S,kind):
+    """
+    Args:
+        R (list of list): the entity resolution we want to evaluate
+        S (list of list): the gold standard
+        kind (str) : the metric we want to use to evaluate : bmd, precision, recall, variation_of_information, f1
+    Returns:
+        list : list of entities with the linked entities
+    """
+    dic_s = {}
+
+    for i,entity in enumerate(S):
+        for r, rec in enumerate(entity):
+            dic_s[rec] = i
+
+
+    if kind == "glued":
+        dic_r_s = {}
+        for i,entity in enumerate(R):
+            _set = set()
+            for r,rec in enumerate(entity):
+                _set.add(dic_s[r])
+            dic_r_s[i] = _set
+        
+        dic_r_s_count = {key:len(_set) for key,_set in dic_r_s.items()}
+        sorted_list = sorted(dic_r_s_count,key = dic_r_s_count.get, reverse = True)
+        
+        return sorted_list[:100], dic_r_s
+            
+
+
+
+
