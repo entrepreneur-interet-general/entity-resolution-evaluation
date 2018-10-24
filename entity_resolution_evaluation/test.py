@@ -1,4 +1,4 @@
-from entity_resolution_evaluation.evaluation import gmd, evaluate, check_r_s_same_size
+from entity_resolution_evaluation.evaluation import gmd, evaluate, check_r_s_same_size, worst_entities
 from entity_resolution_evaluation.reconcile import reconcile
 import pytest
 
@@ -73,5 +73,23 @@ def test_check_r_s_same_size_raises_value_error(init_data):
 def test_reconcile_r_s(init_data):
     S, S3, R3, S2, R, S_splitted, S_merged, R4, R5 = init_data
     R1,S1 =  reconcile(R5,S, 'R1S1')
-    assert S1 == [[0, 1], [2, 3, 4], [5], [8], [10, 11]]  
+    assert S1 == [[0, 1], [2, 3, 4], [5], [8], [10, 11]]
+
+def test_worst_entities_broken(init_data):
+    S, S3, R3, S2, R, S_splitted, S_merged, R4, R5 = init_data
+    lst, dic = worst_entities(R,S,'broken') 
+    assert lst == [1, 0, 2]
+    assert dic == {0: {0}, 1: {0, 1}, 2: {2}}
+
+def test_worst_entities_glued(init_data):
+    S, S3, R3, S2, R, S_splitted, S_merged, R4, R5 = init_data
+    lst, dic = worst_entities(R,S,'glued') 
+    assert lst == [0, 1, 2]
+    assert dic == {0: {0, 1}, 1: {1}, 2: {2}}
+    
+
+
+
+
+
 
