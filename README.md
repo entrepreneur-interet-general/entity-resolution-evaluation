@@ -36,7 +36,7 @@ evaluate(R,S, 'bmd')
 To go from R to S, you have to do 1 split and 1 merge.
 ```
 evaluate(R,S,'precision')
-# returns 0.5, 
+# returns 0.5,
 ```
 Half of the pairs of R are incorrect. (0,2) and (1,2) are incorrect. (0,1) and (3,4) are correct
 ```
@@ -49,7 +49,7 @@ evaluate(R,S,'variation of information')
 # returns 0.6365141682948129
 ````
 
-### Metrics 
+### Metrics
 
 You can currently compute the following metrics :
 
@@ -110,8 +110,8 @@ Here we added the rest of our mixed entity [6,7] in S as another entity. Here we
 
 Sure getting a quantitative evaluation of our entity resolution is nice. But to get a better feeling of what went wrong there's no getting around looking at examples of badly resolved entities.
 
-We'll differentiate 2 types of badly resolved entities : 
-- *glued entities* are entities of R that glued together a large number of entities of S. 
+We'll differentiate 2 types of badly resolved entities :
+- *glued entities* are entities of R that glued together a large number of entities of S.
 - *broken entities* are entities of S that were broken in a large number of entities in R.
 
 ```
@@ -120,7 +120,7 @@ from entity_resolution_evaluation.evaluation import worst_entities
 R = [[0, 1, 2], [3, 4], [5]]
 S = [[0, 1], [2, 3, 4], [5]]
 
-s_broken_entities, s_r_broken_entities_dic = worst_entities(R,S,'broken') 
+s_broken_entities, s_r_broken_entities_dic = worst_entities(R,S,'broken')
 
 # s_broken_entities = [1, 0, 2]
 # s_r_broken_entities_dic = {0: {0}, 1: {0, 1}, 2: {2}}
@@ -134,12 +134,24 @@ from entity_resolution_evaluation.evaluation import worst_entities
 R = [[0, 1, 2], [3, 4], [5]]
 S = [[0, 1], [2, 3, 4], [5]]
 
-r_glued_entities, r_s_glued_entities_dic = worst_entities(R,S,'glued') 
+r_glued_entities, r_s_glued_entities_dic = worst_entities(R,S,'glued')
 
 # r_glued_entities = [[0, 1, 2]
 # r_s_glued_entities_dic = {0: {0}, 1: {0, 1}, 2: {2}}
 ```
 The worst glued entities are : the first entity of R ([0,1,2]) which is present in the entities 0 and 1 of S (respectively [0,1] and [2,3,4] ). It's the only entity of R that is glued.
+
+### Development
+
+#### Run the tests
+The package pytest is used to run the tests. You can install it with pip
+```
+pip install -r dev_requirements.txt
+```
+Then run the tests with pytest
+```
+pytest
+```
 
 
 ### Create a gold standard
